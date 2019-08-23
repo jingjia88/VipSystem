@@ -38,8 +38,8 @@
               @foreach ($groups as $group)
               <tr>
                  <td>
-                  <a href="{{ url('admin/group/'.$group->id.'/edit') }}" class="btn btn-primary">編輯</a>
-                  <form action="{{ url('admin/group/'.$group->id) }}" method="POST" style="display: inline;">
+                  <a href="{{ url('admin/group/'.$group->name.'/edit') }}" class="btn btn-primary">編輯</a>
+                  <form action="{{ url('admin/group/'.$group->name) }}" method="POST" style="display: inline;">
                       {{ method_field('DELETE') }}
                       {{ csrf_field() }}
                       <button type="submit" class="btn btn-danger">删除</button>

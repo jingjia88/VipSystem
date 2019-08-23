@@ -23,14 +23,16 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
     Route::delete('/{id}','HomeController@delete');
     Route::get('/{id}/edit','HomeController@edit');
     Route::put('/{id}','HomeController@update');
+
     //郵件管理
     Route::get('/mail','MailController@index');
     Route::get('/mail/send','MailController@send');
     Route::get('/mail/sms','MailController@sms');
+
     //群組管理
     Route::resource('group', 'GroupController');
-    //回覆管理
-    Route::get('/reply','ReplyController@index');
+    Route::post('/group/find','GroupController@find');
+    
     
 });
 Auth::routes();

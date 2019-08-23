@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset">
-        <h2> send mail </h2>
+        <h2> send message </h2>
             <div class="panel panel-default"  >
                 <div class="panel-body">
 

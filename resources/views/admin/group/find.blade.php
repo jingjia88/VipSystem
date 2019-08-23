@@ -34,13 +34,6 @@
                 </div>
             @endif
 
-            <h4>關鍵字搜索：</h4>
-            <form action="{{ url('admin/group/find') }}" method="POST">
-                {!! csrf_field() !!}
-                <input type="search" id="search" style="width:500px" name="search" required="required" placeholder="Search..." />
-                <button class="btn btn-lg btn-info">搜索</button>
-            </form>
-
             <form action="{{ url('admin/group') }}" method="POST">
                 {!! csrf_field() !!}
                 <h4>群組名稱：</h4>
@@ -80,13 +73,7 @@
     </div>
     </div>
 </div>
-<script language="javascript">
-function c1()
-{
-var t=document.getElementById("txt");
-t.value="www.jb51.net 修改文字內容"
-}
-</script>
+
 
 
 @endsection
