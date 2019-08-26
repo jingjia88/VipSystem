@@ -26,29 +26,46 @@
     <div class="panel panel-default"  >
         <div class="panel-body">
 
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>新增失败</strong> 输入不符合要求<br><br>
-                    {!! implode('<br>', $errors->all()) !!}
-                </div>
-            @endif
-
             <form action="{{ url('admin') }}" method="POST">
                 {!! csrf_field() !!}
-                <h4>姓名：</h4>
-                <input type="text" name="name" class="form-control" required="required">
-                
-                <h4>email：</h4>
-                <input type="text" name="email" class="form-control">
-            
-                <h4>電話號碼：</h4>
-                <input type="text" name="phone" class="form-control">
-                
-                <h4>職位：</h4>
-                <input type="text" name="identity" class="form-control">
+                <h4>行業別：</h4>
+                <input type="text" name="industry" class="form-control" >
                 
                 <h4>公司：</h4>
                 <input type="text" name="company" class="form-control">
+            
+                <h4>中文姓名：</h4>
+                <input type="text" name="name" class="form-control" required="required">
+                
+                <h4>英文姓名：</h4>
+                <input type="text" name="ename" class="form-control">
+                
+                <h4>職稱：</h4>
+                <input type="text" name="identity" class="form-control">
+
+                <h4>部門：</h4>
+                <input type="text" name="pr" class="form-control">
+            
+                <h4>地址：</h4>
+                <input type="text" name="addr" class="form-control">
+            
+                <h4>公司電話：</h4>
+                <input type="text" name="companyphone" class="form-control">
+            
+                <h4>手機：</h4>
+                <input type="text" name="phone" class="form-control">
+            
+                <h4>電子信箱：</h4>
+                <input type="email" name="email" class="form-control">
+            
+                <h4>聯絡人姓名：</h4>
+                <input type="text" name="conname" class="form-control">
+            
+                <h4>聯絡人電話：</h4>
+                <input type="text" name="conphone" class="form-control">
+            
+                <h4>聯絡人電子信箱：</h4>
+                <input type="email" name="conemail" class="form-control">
                 <br>
                 <button class="btn btn-lg btn-info">新增</button>
             </form>

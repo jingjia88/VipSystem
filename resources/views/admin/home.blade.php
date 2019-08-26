@@ -25,17 +25,34 @@
     <h2> 會員資料表 </h2> 
     
     <div class="panel panel-default"  >
-          <div class="panel-heading"><a href="{{ url('admin/add') }}" class="btn btn-lg btn-primary">新增</a></div>
-          <div class="panel-body">
-          <table id="mytable" style="line-height:40px;" border="2" >
+          <div class="panel-heading">
+            <a href="{{ url('admin/add') }}" class="btn btn-lg btn-primary">新增</a><br>
+            <hr>
+            <form action="{{ url('admin/group/import') }}" method="POST" style="display: inline;">
+                {{ csrf_field() }}
+                <span style="font-size:16px;">匯入: </span>
+                <input type="file" name="excel" style="display: inline;" required="required" >
+                <button type="submit" class="btn btn-primary">確認匯入</button>
+            </form>
+          </div>
+          <div class="panel-body" style="height:600px;  overflow-y:scroll; overflow-x:auto; ">
+          <table id="mytable" style="line-height:40px; min-width:1500px; " border="2" >
                   <tr>
-                    <th scope="col" style="width:200px"></th>
-                    <th scope="col" style="width:30px">ID</th>
-                    <th scope="col" style="width:60px">姓名</th>
-                    <th scope="col" style="width:60px">電話號碼</th>
-                    <th scope="col" style="width:100px">職位</th>
-                    <th scope="col" style="width:250px">email</th>
-                    <th scope="col" style="width:150px">公司</th>
+                  <th scope="col" style="width:150px"></th>
+                    <th scope="col" style="width:10px">ID</th>
+                    <th scope="col" style="width:80px">行業別</th>
+                    <th scope="col" style="width:80px">公司</th>
+                    <th scope="col" style="width:80px">中文姓名</th>
+                    <th scope="col" style="width:80px">英文姓名</th>
+                    <th scope="col" style="width:80px">職稱</th>
+                    <th scope="col" style="width:80px">部門</th>
+                    <th scope="col" style="width:250px">地址</th>
+                    <th scope="col" style="width:80px">公司電話</th>
+                    <th scope="col" style="width:80px">手機</th>
+                    <th scope="col" style="width:250px">電子信箱</th>
+                    <th scope="col" style="width:80px">聯絡人姓名</th>
+                    <th scope="col" style="width:80px">聯絡人電話</th>
+                    <th scope="col" style="width:250px">聯絡人電子信箱</th>
                   </tr>
                   @foreach ($members as $member)
                   <tr>
@@ -48,11 +65,19 @@
                         </form>
                     </td>
                     <td>{{ $member->id }}</td>
+                    <td>{{ $member->industry }}</td>
+                    <td>{{ $member->company }}</td>
                     <td>{{ $member->name }}</td>
-                    <td>{{ $member->phone }}</td>
+                    <td>{{ $member->ename }}</td>
                     <td>{{ $member->identity }}</td>
+                    <td>{{ $member->pr }}</td>
+                    <td>{{ $member->addr }}</td>
+                    <td>{{ $member->companyphone }}</td>
+                    <td>{{ $member->phone }}</td>
                     <td>{{ $member->email }}</td>
-                    <td>{{ $member->company }}<td>
+                    <td>{{ $member->conname }}</td>
+                    <td>{{ $member->conphone }}</td>
+                    <td>{{ $member->conemail }}</td>
                   </tr>
                   @endforeach
                 </table>

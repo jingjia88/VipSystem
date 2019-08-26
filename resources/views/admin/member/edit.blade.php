@@ -36,20 +36,44 @@
             <form action="{{ url('admin/'.$member->id) }}" method="POST">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
-                <h4>姓名：</h4>
-                <input type="text" name="name" class="form-control" required="required" value="{{ $member->name }}">
-                
-                <h4>email：</h4>
-                <input type="text" name="email" class="form-control" value="{{ $member->email }}">
-            
-                <h4>電話號碼：</h4>
-                <input type="text" name="phone" class="form-control" value="{{ $member->phone }}">
-                
-                <h4>職位：</h4>
-                <input type="text" name="identity" class="form-control" value="{{ $member->identity }}">
+                <h4>行業別：</h4>
+                <input type="text" name="industry" class="form-control" value="{{$member->industry}}">
                 
                 <h4>公司：</h4>
-                <input type="text" name="company" class="form-control" value="{{ $member->company }}">
+                <input type="text" name="company" class="form-control" value="{{$member->company}}">
+            
+                <h4>中文姓名：</h4>
+                <input type="text" name="name" class="form-control" value="{{$member->name}}"required="required">
+                
+                <h4>英文姓名：</h4>
+                <input type="text" name="ename" class="form-control" value="{{$member->ename}}">
+                
+                <h4>職稱：</h4>
+                <input type="text" name="identity" class="form-control" value="{{$member->identity}}">
+
+                <h4>部門：</h4>
+                <input type="text" name="pr" class="form-control" value="{{$member->pr}}">
+            
+                <h4>地址：</h4>
+                <input type="text" name="addr" class="form-control" value="{{$member->addr}}">
+            
+                <h4>公司電話：</h4>
+                <input type="text" name="companyphone" class="form-control" value="{{$member->companyphone}}">
+            
+                <h4>手機：</h4>
+                <input type="text" name="phone" class="form-control" value="{{$member->phone}}">
+            
+                <h4>電子信箱：</h4>
+                <input type="email" name="email" class="form-control" value="{{$member->email}}">
+            
+                <h4>聯絡人姓名：</h4>
+                <input type="text" name="conname" class="form-control" value="{{$member->conname}}">
+            
+                <h4>聯絡人電話：</h4>
+                <input type="text" name="conphone" class="form-control" value="{{$member->conphone}}">
+            
+                <h4>聯絡人電子信箱：</h4>
+                <input type="email" name="conemail" class="form-control" value="{{$member->conemail}}">
                 <br>
                 <button class="btn btn-lg btn-info">確定</button>
             </form>

@@ -25,12 +25,20 @@ class HomeController extends Controller
         ]);
     
         $member = new Member;
-        $member->name = $request->get('name');
-        $member->email = $request->get('email');
-        $member->phone = $request->get('phone');
-        $member->identity = $request->get('identity');
-        $member->company = $request->get('company');
-    
+        $member->industry =$request->get('industry');
+        $member->company =$request->get('company');
+        $member->name =$request->get('name');
+        $member->ename =$request->get('ename');
+        $member->identity =$request->get('identity');
+        $member->pr =$request->get('pr');
+        $member->addr =$request->get('addr');
+        $member->companyphone =$request->get('companyphone');
+        $member->phone =$request->get('phone');
+        $member->email =$request->get('email');
+        $member->conname =$request->get('conname');
+        $member->conphone =$request->get('conphone');
+        $member->conemail=$request->get('conemail');
+
         if ($member->save()) {
             return redirect('admin');
         } else {
@@ -65,5 +73,12 @@ class HomeController extends Controller
         } else {
             return redirect()->back()->withInput()->withErrors('更新失败！');
         }
+    }
+    public function import(Request $request){
+        dd($request->excel);
+        // Excel::load($filePath, function($reader) {
+        //     $data = $reader->all();
+        //     dd($data);
+        // });
     }
 }

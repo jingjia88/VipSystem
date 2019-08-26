@@ -42,13 +42,21 @@
                 <h4>會員名單：</h4>
                 <table id="mytable" style="line-height:40px;" border="2" >
                   <tr>
-                    <th scope="col" style="width:100px"></th>
-                    <th scope="col" style="width:30px">ID</th>
-                    <th scope="col" style="width:60px">姓名</th>
-                    <th scope="col" style="width:60px">電話號碼</th>
-                    <th scope="col" style="width:100px">職位</th>
-                    <th scope="col" style="width:250px">email</th>
-                    <th scope="col" style="width:150px">公司</th>
+                  <th scope="col" style="width:100px"></th>
+                    <th scope="col" >ID</th>
+                    <th scope="col" >行業別</th>
+                    <th scope="col" >公司</th>
+                    <th scope="col" >中文姓名</th>
+                    <th scope="col" >英文姓名</th>
+                    <th scope="col" >職稱</th>
+                    <th scope="col" >部門</th>
+                    <th scope="col" >地址</th>
+                    <th scope="col" >公司電話</th>
+                    <th scope="col" >手機</th>
+                    <th scope="col" >電子信箱</th>
+                    <th scope="col" >聯絡人姓名</th>
+                    <th scope="col" >聯絡人電話</th>
+                    <th scope="col" >聯絡人電子信箱</th>
                   </tr>
                   @foreach ($members as $member)
                   <tr>
@@ -56,11 +64,19 @@
                     </td>
                     
                     <td>{{ $member->id }}</td>
+                    <td>{{ $member->industry }}</td>
+                    <td>{{ $member->company }}</td>
                     <td>{{ $member->name }}</td>
-                    <td>{{ $member->phone }}</td>
+                    <td>{{ $member->ename }}</td>
                     <td>{{ $member->identity }}</td>
+                    <td>{{ $member->pr }}</td>
+                    <td>{{ $member->addr }}</td>
+                    <td>{{ $member->companyphone }}</td>
+                    <td>{{ $member->phone }}</td>
                     <td>{{ $member->email }}</td>
-                    <td>{{ $member->company }}<td>
+                    <td>{{ $member->conname }}</td>
+                    <td>{{ $member->conphone }}</td>
+                    <td>{{ $member->conemail }}</td>
                   </tr>
                   @endforeach
                 </table>

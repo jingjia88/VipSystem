@@ -31,15 +31,24 @@
             <div style="border: 1px solid;"></div>
 
             <h4>會員名單：</h4>
-            <table id="table1" style="line-height:40px;" border="2" >
+            <div class="panel-body" style="max-height:360px;  overflow-y:scroll; overflow-x:auto; ">
+            <table id="table1" style="line-height:40px; min-width:1500px;" border="2" >
                 <tr>
-                <th scope="col" style="width:100px"></th>
-                <th scope="col" style="width:30px">ID</th>
-                <th scope="col" style="width:60px">姓名</th>
-                <th scope="col" style="width:60px">電話號碼</th>
-                <th scope="col" style="width:100px">職位</th>
-                <th scope="col" style="width:250px">email</th>
-                <th scope="col" style="width:150px">公司</th>
+                <th scope="col" style="width:150px"></th>
+                    <th scope="col" style="width:10px">ID</th>
+                    <th scope="col" style="width:80px">行業別</th>
+                    <th scope="col" style="width:80px">公司</th>
+                    <th scope="col" style="width:80px">中文姓名</th>
+                    <th scope="col" style="width:80px">英文姓名</th>
+                    <th scope="col" style="width:80px">職稱</th>
+                    <th scope="col" style="width:80px">部門</th>
+                    <th scope="col" style="width:250px">地址</th>
+                    <th scope="col" style="width:80px">公司電話</th>
+                    <th scope="col" style="width:80px">手機</th>
+                    <th scope="col" style="width:250px">電子信箱</th>
+                    <th scope="col" style="width:80px">聯絡人姓名</th>
+                    <th scope="col" style="width:80px">聯絡人電話</th>
+                    <th scope="col" style="width:250px">聯絡人電子信箱</th>
                 </tr>
                 @foreach ($members as $member)
                 <tr>
@@ -52,15 +61,23 @@
                 </td>
                 
                 <td>{{ $member->id }}</td>
-                <td>{{ $member->name }}</td>
-                <td>{{ $member->phone }}</td>
-                <td>{{ $member->identity }}</td>
-                <td>{{ $member->email }}</td>
-                <td>{{ $member->company }}<td>
+                    <td>{{ $member->industry }}</td>
+                    <td>{{ $member->company }}</td>
+                    <td>{{ $member->name }}</td>
+                    <td>{{ $member->ename }}</td>
+                    <td>{{ $member->identity }}</td>
+                    <td>{{ $member->pr }}</td>
+                    <td>{{ $member->addr }}</td>
+                    <td>{{ $member->companyphone }}</td>
+                    <td>{{ $member->phone }}</td>
+                    <td>{{ $member->email }}</td>
+                    <td>{{ $member->conname }}</td>
+                    <td>{{ $member->conphone }}</td>
+                    <td>{{ $member->conemail }}</td>
                 </tr>
                 @endforeach
             </table>
-
+            </div>
             <h4>會員搜索：</h4>
             <input type="search" id="search" style="width:500px" name="q" required="required" placeholder="Search..." />
             <button id="query" onclick="search();" class="btn btn-lg btn-info">搜索</button>
@@ -70,15 +87,24 @@
                 {!! csrf_field() !!}
                 <input type="hidden" name="name" class="form-control" value="{{$name}}">
                 
-                <table id="mytable" style="line-height:40px;" border="2" >
+                <div class="panel-body" style="max-height:360px;  overflow-y:scroll; overflow-x:auto; ">
+                <table id="mytable" style="line-height:40px; min-width:1500px;" border="2" >
                   <tr id="table_title">
-                    <th scope="col" style="width:100px"></th>
-                    <th scope="col" style="width:30px">ID</th>
-                    <th scope="col" style="width:60px">姓名</th>
-                    <th scope="col" style="width:60px">電話號碼</th>
-                    <th scope="col" style="width:100px">職位</th>
-                    <th scope="col" style="width:250px">email</th>
-                    <th scope="col" style="width:150px">公司</th>
+                  <th scope="col" style="width:150px"></th>
+                    <th scope="col" style="width:10px">ID</th>
+                    <th scope="col" style="width:80px">行業別</th>
+                    <th scope="col" style="width:80px">公司</th>
+                    <th scope="col" style="width:80px">中文姓名</th>
+                    <th scope="col" style="width:80px">英文姓名</th>
+                    <th scope="col" style="width:80px">職稱</th>
+                    <th scope="col" style="width:80px">部門</th>
+                    <th scope="col" style="width:250px">地址</th>
+                    <th scope="col" style="width:80px">公司電話</th>
+                    <th scope="col" style="width:80px">手機</th>
+                    <th scope="col" style="width:250px">電子信箱</th>
+                    <th scope="col" style="width:80px">聯絡人姓名</th>
+                    <th scope="col" style="width:80px">聯絡人電話</th>
+                    <th scope="col" style="width:250px">聯絡人電子信箱</th>
                   </tr>
                   @foreach ($all as $person)
                   <tr name="{{ $person->name }}">
@@ -86,15 +112,23 @@
                     </td>
                     
                     <td>{{ $person->id }}</td>
+                    <td>{{ $person->industry }}</td>
+                    <td>{{ $person->company }}</td>
                     <td>{{ $person->name }}</td>
-                    <td>{{ $person->phone }}</td>
+                    <td>{{ $person->ename }}</td>
                     <td>{{ $person->identity }}</td>
+                    <td>{{ $person->pr }}</td>
+                    <td>{{ $person->addr }}</td>
+                    <td>{{ $person->companyphone }}</td>
+                    <td>{{ $person->phone }}</td>
                     <td>{{ $person->email }}</td>
-                    <td>{{ $person->company }}<td>
+                    <td>{{ $person->conname }}</td>
+                    <td>{{ $person->conphone }}</td>
+                    <td>{{ $person->conemail }}</td>
                   </tr>
                   @endforeach
                 </table>
-                <br>
+                </div><br>
                 <button class="btn btn-lg btn-info" onclick="return onSubmit()">新增</button>
                 </div>
             </form>

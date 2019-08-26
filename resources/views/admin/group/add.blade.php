@@ -44,16 +44,25 @@
                 <h4>群組名稱：</h4>
                 <input type="text" name="name" class="form-control" required="required">
                 
+                <div class="panel-body" style="height:400px;  overflow-y:scroll; overflow-x:auto; ">
                 <h4>會員名單：</h4>
-                <table id="mytable" style="line-height:40px;" border="2" >
+                <table id="mytable" style="line-height:40px; min-width:1500px;" border="2" >
                   <tr id="table_title">
-                    <th scope="col" style="width:100px"></th>
-                    <th scope="col" style="width:30px">ID</th>
-                    <th scope="col" style="width:60px">姓名</th>
-                    <th scope="col" style="width:60px">電話號碼</th>
-                    <th scope="col" style="width:100px">職位</th>
-                    <th scope="col" style="width:250px">email</th>
-                    <th scope="col" style="width:150px">公司</th>
+                  <th scope="col" style="width:150px"></th>
+                    <th scope="col" style="width:10px">ID</th>
+                    <th scope="col" style="width:80px">行業別</th>
+                    <th scope="col" style="width:80px">公司</th>
+                    <th scope="col" style="width:80px">中文姓名</th>
+                    <th scope="col" style="width:80px">英文姓名</th>
+                    <th scope="col" style="width:80px">職稱</th>
+                    <th scope="col" style="width:80px">部門</th>
+                    <th scope="col" style="width:250px">地址</th>
+                    <th scope="col" style="width:80px">公司電話</th>
+                    <th scope="col" style="width:80px">手機</th>
+                    <th scope="col" style="width:250px">電子信箱</th>
+                    <th scope="col" style="width:80px">聯絡人姓名</th>
+                    <th scope="col" style="width:80px">聯絡人電話</th>
+                    <th scope="col" style="width:250px">聯絡人電子信箱</th>
                   </tr>
                   @foreach ($members as $member)
                   <tr name="{{ $member->name }}">
@@ -61,14 +70,22 @@
                     </td>
                     
                     <td>{{ $member->id }}</td>
+                    <td>{{ $member->industry }}</td>
+                    <td>{{ $member->company }}</td>
                     <td>{{ $member->name }}</td>
-                    <td>{{ $member->phone }}</td>
+                    <td>{{ $member->ename }}</td>
                     <td>{{ $member->identity }}</td>
+                    <td>{{ $member->pr }}</td>
+                    <td>{{ $member->addr }}</td>
+                    <td>{{ $member->companyphone }}</td>
+                    <td>{{ $member->phone }}</td>
                     <td>{{ $member->email }}</td>
-                    <td>{{ $member->company }}<td>
+                    <td>{{ $member->conname }}</td>
+                    <td>{{ $member->conphone }}</td>
+                    <td>{{ $member->conemail }}</td>
                   </tr>
                   @endforeach
-                </table>
+                </table></div>
                 <br>
                 <button class="btn btn-lg btn-info" onclick="return onSubmit()">新增</button>
                 </div>

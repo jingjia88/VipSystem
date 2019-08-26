@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
     Route::delete('/{id}','HomeController@delete');
     Route::get('/{id}/edit','HomeController@edit');
     Route::put('/{id}','HomeController@update');
-
+    Route::post('/group/import','HomeController@import');
     //郵件管理
     Route::get('/mail','MailController@index');
     Route::post('/mail/send','MailController@send');

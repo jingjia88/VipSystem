@@ -12,6 +12,13 @@ class GroupController extends Controller
     //
     public function index()
     {
+        $groups = DB::table('groups')->get();
+        foreach($groups as $group){
+            if(App\Member::find($group->user)==null){
+                Group::where('name',$group->name)->where('user',$group->user)->delete();
+            }
+        }
+        
         $groups = DB::table('groups')->groupBy('name')->paginate(10);
         return view('admin/group')->with('groups',$groups);
     }
@@ -36,7 +43,7 @@ class GroupController extends Controller
             } 
         }
 
-        return redirect('admin/group');
+        return redirect()->back()->withInput();
     }
     public function edit($name)
     {
