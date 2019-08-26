@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+
 <div class="container" style="margin-left: 100px; ">
     <div class="row">
         <div class="col-md-3 col-md-offset-1">
@@ -31,19 +33,34 @@
                     </div>
                 @endif
 
-                <form action="{{ url('admin/articles') }}" method="POST">
+                <form action="{{ url('admin/mail/send') }}" method="POST">
                     {!! csrf_field() !!}
+                    <span style="font-size: 16px; ">主旨: </span>
                     <input type="text" name="title" class="form-control" required="required" placeholder="请输入标题">
                     <br>
-                    <textarea name="body" rows="10" class="form-control" required="required" placeholder="请输入内容"></textarea>
+                    <span style="font-size: 16px; ">選擇發送群組:   </span>
+                    <select name="groupname" class="select" style="width: 300px;">
+                        @foreach ($groups as $group)
+                        　<option value="{{$group->name}}">{{$group->name}}</option>
+                        @endforeach
+                    </select>
+                    <br><br>
+                    <textarea id="content"name="body" rows="10" class="form-control" required="required" placeholder="请输入内容"></textarea>
                     <br>
-                    <button class="btn btn-lg btn-info">新增</button>
+                    <button class="btn btn-lg btn-info">發送</button>
                 </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    
+
+<script type="text/javascript">
+    window.onload = function()
+    {
+        CKEDITOR.replace( 'content');
+    };
+</script>
+ 
    
 @endsection

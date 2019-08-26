@@ -27,16 +27,9 @@
     <div class="panel panel-default"  >
         <div class="panel-body">
 
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>編輯失败</strong> 输入不符合要求<br><br>
-                    {!! implode('<br>', $errors->all()) !!}
-                </div>
-            @endif
+            <h4>群組名稱： {{$name}}</h4>
+            <div style="border: 1px solid;"></div>
 
-            <h4>群組名稱：</h4>
-            <input type="text" name="name" class="form-control" required="required">
-            
             <h4>會員名單：</h4>
             <table id="table1" style="line-height:40px;" border="2" >
                 <tr>
@@ -51,7 +44,7 @@
                 @foreach ($members as $member)
                 <tr>
                 <td>
-                  <form action="{{ url('admin/group/'.$group->name) }}" method="POST" style="display: inline;">
+                  <form action="{{ url('admin/group/'.$name.'/'.$member->id) }}" method="POST" style="display: inline;">
                       {{ method_field('DELETE') }}
                       {{ csrf_field() }}
                       <button type="submit" class="btn btn-danger">删除</button>
@@ -68,17 +61,88 @@
                 @endforeach
             </table>
 
-            <h4>關鍵字搜索：</h4>
-            <form action="{{ url('admin/group/find') }}" method="POST">
+            <h4>會員搜索：</h4>
+            <input type="search" id="search" style="width:500px" name="q" required="required" placeholder="Search..." />
+            <button id="query" onclick="search();" class="btn btn-lg btn-info">搜索</button>
+            <button onclick="show_all();" class="btn btn-lg btn-info">all</button>
+            
+            <form action="{{ url('admin/group') }}" id="member_form" method="POST">
                 {!! csrf_field() !!}
-                <input type="search" id="search" style="width:500px" name="search" required="required" placeholder="Search..." />
-                <button class="btn btn-lg btn-info">搜索</button>
+                <input type="hidden" name="name" class="form-control" value="{{$name}}">
+                
+                <table id="mytable" style="line-height:40px;" border="2" >
+                  <tr id="table_title">
+                    <th scope="col" style="width:100px"></th>
+                    <th scope="col" style="width:30px">ID</th>
+                    <th scope="col" style="width:60px">姓名</th>
+                    <th scope="col" style="width:60px">電話號碼</th>
+                    <th scope="col" style="width:100px">職位</th>
+                    <th scope="col" style="width:250px">email</th>
+                    <th scope="col" style="width:150px">公司</th>
+                  </tr>
+                  @foreach ($all as $person)
+                  <tr name="{{ $person->name }}">
+                    <td><input type="checkbox" value="{{$person->id}}"  name="member[]"> 
+                    </td>
+                    
+                    <td>{{ $person->id }}</td>
+                    <td>{{ $person->name }}</td>
+                    <td>{{ $person->phone }}</td>
+                    <td>{{ $person->identity }}</td>
+                    <td>{{ $person->email }}</td>
+                    <td>{{ $person->company }}<td>
+                  </tr>
+                  @endforeach
+                </table>
+                <br>
+                <button class="btn btn-lg btn-info" onclick="return onSubmit()">新增</button>
+                </div>
             </form>
         </div>
     </div>
     </div>
 </div>
 
+<script language="javascript">
+window.onload = function()
+{
+    let q = document.getElementById('search').value;
+    let ele = document.getElementById('mytable').getElementsByTagName('tr');
+    for(let i=1; i<ele.length; i++){
+        ele[i].style.display = 'none';
+    }
+};
+function onSubmit() 
+{ 
+    var fields = $("input[name='member[]']").serializeArray(); 
+    if (fields.length === 0) 
+    { 
+        alert('請至少勾選一位會員'); 
+        // cancel submit
+        return false;
+    }
+    return true;
+}
 
+function search(){
+    show_all();
+    let q = document.getElementById('search').value;
+    let ele = document.getElementById('mytable').getElementsByTagName('tr');
+    for(let i=1; i<ele.length; i++){
+        if( ele[i].getAttribute("name").search(q)==-1){
+            ele[i].style.display = 'none';
+        }
+    }
+}
+
+function show_all(){
+    let ele = document.getElementById('mytable').getElementsByTagName('tr');
+    console.log(ele);
+    for(let i=1; i<ele.length; i++){
+        ele[i].style.display = 'table-row';
+    }
+}
+
+</script>
 
 @endsection

@@ -64,7 +64,7 @@
                   </tr>
                   @endforeach
                 </table>
-                <div style="float:right;">{!! $members->links() !!}</div> 
+                
                 <br>
                 <button class="btn btn-lg btn-info">新增</button>
                 </div>

@@ -26,12 +26,13 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 
     //郵件管理
     Route::get('/mail','MailController@index');
-    Route::get('/mail/send','MailController@send');
+    Route::post('/mail/send','MailController@send');
     Route::get('/mail/sms','MailController@sms');
 
     //群組管理
     Route::resource('group', 'GroupController');
     Route::post('/group/find','GroupController@find');
+    Route::delete('/group/{name}/{id}','GroupController@delete');
     
     
 });

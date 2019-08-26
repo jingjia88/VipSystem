@@ -15,9 +15,10 @@ class GroupController extends Controller
         $groups = DB::table('groups')->groupBy('name')->paginate(10);
         return view('admin/group')->with('groups',$groups);
     }
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin/group/add')->with('members',\App\Member::paginate(5));
+        $members = DB::table('members')->get();
+        return view('admin/group/add')->with('members',$members);
     }
     public function store(Request $request)
     {
@@ -39,13 +40,22 @@ class GroupController extends Controller
     }
     public function edit($name)
     {
-        $groups = Group::where('name',$name)->member();
-        
-        return view('admin/group/edit')->with('members',$groups);
+        $groups = Group::where('name',$name)->get();
+        $members=null;
+        foreach($groups as $group){
+            $members[]=App\Member::find($group->user);
+        }
+        if($members==null){
+            $groups = DB::table('groups')->groupBy('name')->paginate(10);
+            return view('admin/group')->with('groups',$groups);
+        }  
+        $all_members = DB::table('members')->get();
+        return view('admin/group/edit')->with('members',$members)->with('name',$name)->with('all',$all_members);
     }
-    public function update()
+    public function delete($name,$id)
     {
-
+        Group::where('name',$name)->where('user',$id)->delete();
+        return redirect()->back()->withInput()->withErrors('删除成功！');
     }
     public function destroy($name)
     {
@@ -54,7 +64,7 @@ class GroupController extends Controller
     }
     public function find(Request $request)
     {
-        $members = DB::table('members')->where('name', $request->get('search'))->paginate(10);
+        $members = DB::table('members')->where('name', $request->get('search'))->get();
         return view('admin/group/find')->with('members',$members);
     }
 }
