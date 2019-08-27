@@ -107,7 +107,7 @@
                     <th scope="col" style="width:250px">聯絡人電子信箱</th>
                   </tr>
                   @foreach ($all as $person)
-                  <tr name="{{ $person->name }}">
+                  <tr name="{{ $person->name }}" class="{{ $person->industry }}">
                     <td><input type="checkbox" style="zoom: 2" value="{{$person->id}}"  name="member[]"> 
                     </td>
                     
@@ -163,9 +163,18 @@ function search(){
     let q = document.getElementById('search').value;
     let ele = document.getElementById('mytable').getElementsByTagName('tr');
     for(let i=1; i<ele.length; i++){
-        if( ele[i].getAttribute("name").search(q)==-1){
-            ele[i].style.display = 'none';
+        let ind= ele[i].getAttribute("class");
+        if(ind ==null){
+            ind="-1";
+            if( ele[i].getAttribute("name").search(q)==-1){
+                ele[i].style.display = 'none';
+            }
+        }else{
+            if( ele[i].getAttribute("name").search(q)==-1 && ind.search(q)==-1){
+                ele[i].style.display = 'none';
+            }
         }
+        
     }
 }
 

@@ -39,13 +39,8 @@ class MailController extends Controller
             
         }
         $groups = DB::table('groups')->groupBy('name')->get();
+
         return view('admin/mail')->with('groups',$groups); 
-        //$content = SELECT "mailcontent" FROM "mail";
-        // Mail::raw($content, function($message)
-        // { 
-        //     $message->to('kejyun@gmail.com');
-        // });
-        // return view(admin/mailsuccess);
     }
     public function sendsms()
     {

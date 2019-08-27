@@ -115,8 +115,16 @@ function search(){
     let q = document.getElementById('search').value;
     let ele = document.getElementById('mytable').getElementsByTagName('tr');
     for(let i=1; i<ele.length; i++){
-        if( ele[i].getAttribute("name").search(q)==-1  ){
-            ele[i].style.display = 'none';
+        let ind= ele[i].getAttribute("class");
+        if(ind ==null){
+            ind="-1";
+            if( ele[i].getAttribute("name").search(q)==-1){
+                ele[i].style.display = 'none';
+            }
+        }else{
+            if( ele[i].getAttribute("name").search(q)==-1 && ind.search(q)==-1){
+                ele[i].style.display = 'none';
+            }
         }
     }
 }
