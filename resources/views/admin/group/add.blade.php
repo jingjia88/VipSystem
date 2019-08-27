@@ -48,8 +48,8 @@
                 <h4>會員名單：</h4>
                 <table id="mytable" style="line-height:40px; min-width:1500px;" border="2" >
                   <tr id="table_title">
-                  <th scope="col" style="width:150px"></th>
-                    <th scope="col" style="width:10px">ID</th>
+                  <th scope="col" style="width:50px"></th>
+                    <th scope="col" style="width:20px">ID</th>
                     <th scope="col" style="width:80px">行業別</th>
                     <th scope="col" style="width:80px">公司</th>
                     <th scope="col" style="width:80px">中文姓名</th>
@@ -65,8 +65,8 @@
                     <th scope="col" style="width:250px">聯絡人電子信箱</th>
                   </tr>
                   @foreach ($members as $member)
-                  <tr name="{{ $member->name }}">
-                    <td><input type="checkbox" value="{{$member->id}}"  name="member[]"> 
+                  <tr name="{{ $member->name }}" class="{{ $member->industry }}">
+                    <td><input type="checkbox" style="zoom: 2" value="{{$member->id}}"  name="member[]"> 
                     </td>
                     
                     <td>{{ $member->id }}</td>
@@ -115,7 +115,7 @@ function search(){
     let q = document.getElementById('search').value;
     let ele = document.getElementById('mytable').getElementsByTagName('tr');
     for(let i=1; i<ele.length; i++){
-        if( ele[i].getAttribute("name").search(q)==-1){
+        if( ele[i].getAttribute("name").search(q)==-1  ){
             ele[i].style.display = 'none';
         }
     }

@@ -28,14 +28,14 @@
           <div class="panel-heading">
             <a href="{{ url('admin/add') }}" class="btn btn-lg btn-primary">新增</a><br>
             <hr>
-            <form action="{{ url('admin/group/import') }}" method="POST" style="display: inline;">
+            <form action="{{ url('admin/group/import') }}" method="POST" enctype="multipart/form-data" style="display: inline;">
                 {{ csrf_field() }}
                 <span style="font-size:16px;">匯入: </span>
                 <input type="file" name="excel" style="display: inline;" required="required" >
                 <button type="submit" class="btn btn-primary">確認匯入</button>
             </form>
           </div>
-          <div class="panel-body" style="height:600px;  overflow-y:scroll; overflow-x:auto; ">
+          <div class="panel-body" style="height:560px;  overflow-y:hidden; overflow-x:auto;">
           <table id="mytable" style="line-height:40px; min-width:1500px; " border="2" >
                   <tr>
                   <th scope="col" style="width:150px"></th>

@@ -90,8 +90,8 @@
                 <div class="panel-body" style="max-height:360px;  overflow-y:scroll; overflow-x:auto; ">
                 <table id="mytable" style="line-height:40px; min-width:1500px;" border="2" >
                   <tr id="table_title">
-                  <th scope="col" style="width:150px"></th>
-                    <th scope="col" style="width:10px">ID</th>
+                  <th scope="col" style="width:50px"></th>
+                    <th scope="col" style="width:20px">ID</th>
                     <th scope="col" style="width:80px">行業別</th>
                     <th scope="col" style="width:80px">公司</th>
                     <th scope="col" style="width:80px">中文姓名</th>
@@ -108,7 +108,7 @@
                   </tr>
                   @foreach ($all as $person)
                   <tr name="{{ $person->name }}">
-                    <td><input type="checkbox" value="{{$person->id}}"  name="member[]"> 
+                    <td><input type="checkbox" style="zoom: 2" value="{{$person->id}}"  name="member[]"> 
                     </td>
                     
                     <td>{{ $person->id }}</td>

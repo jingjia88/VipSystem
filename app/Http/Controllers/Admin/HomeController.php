@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Member;
+use Excel;
 
 class HomeController extends Controller
 {
@@ -62,11 +63,20 @@ class HomeController extends Controller
         ]);
     
         $member = Member::find($id);
-        $member->name = $request->get('name');
-        $member->email = $request->get('email');
-        $member->phone = $request->get('phone');
-        $member->identity = $request->get('identity');
-        $member->company = $request->get('company');
+        $member->industry =$request->get('industry');
+        $member->company =$request->get('company');
+        $member->name =$request->get('name');
+        $member->ename =$request->get('ename');
+        $member->identity =$request->get('identity');
+        $member->pr =$request->get('pr');
+        $member->addr =$request->get('addr');
+        $member->companyphone =$request->get('companyphone');
+        $member->phone =$request->get('phone');
+        $member->email =$request->get('email');
+        $member->conname =$request->get('conname');
+        $member->conphone =$request->get('conphone');
+        $member->conemail=$request->get('conemail');
+
     
         if ($member->save()) {
             return redirect('admin');
@@ -75,10 +85,41 @@ class HomeController extends Controller
         }
     }
     public function import(Request $request){
-        dd($request->excel);
-        // Excel::load($filePath, function($reader) {
-        //     $data = $reader->all();
-        //     dd($data);
-        // });
+        if($request->hasFile('excel')){
+            $path = $request->file('excel')->getRealPath();
+            $data = \Excel::load($path)->get();
+
+            if ($data->count()) {
+                foreach ($data as $key => $value) {
+                    $member = new Member;
+                    $member->industry =$value->industry;
+                    $member->company =$value->company;
+                    $member->name =$value->name;
+                    $member->ename =$value->ename;
+                    $member->identity =$value->identity;
+                    $member->pr =$value->pr;
+                    $member->addr =$value->addr;
+                    $member->companyphone =$value->companyphone;
+                    $member->phone =$value->phone;
+                    $member->email =$value->email;
+                    $member->conname =$value->conname;
+                    $member->conphone =$value->conphone;
+                    $member->conemail=$value->conemail;
+
+                    if (!$member->save()) {
+                        return redirect()->back()->withInput()->withErrors('保存失败！');
+                    }
+                }
+                
+            }
+            return redirect('admin');
+            
+            
+            
+            Excel::load($path, function($reader) {
+                $data = $reader->all();
+                dd($data);
+            });
+        }
     }
 }
