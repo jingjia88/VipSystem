@@ -55,10 +55,10 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'kate.hsu@mna.com.tw'),
-        'name' => env('MAIL_FROM_NAME', '牛耳藝術'),
-    ],
+    // 'from' => [
+    //     'address' => env('MAIL_FROM_ADDRESS', 'kate.hsu@mna.com.tw'),
+    //     'name' => env('MAIL_FROM_NAME', '牛耳藝術'),
+    // ],
 
     /*
     |--------------------------------------------------------------------------

@@ -113,13 +113,6 @@ class HomeController extends Controller
                 
             }
             return redirect('admin');
-            
-            
-            
-            Excel::load($path, function($reader) {
-                $data = $reader->all();
-                dd($data);
-            });
         }
     }
 }

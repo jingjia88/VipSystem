@@ -29,7 +29,8 @@ class Notice extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->params['title'])
+        return $this->from('renee.ch48@gmail.com','牛耳藝術')
+            ->subject($this->params['title'])
             ->view('admin.email.notice')
             ->with([
                 'params' => $this->params,

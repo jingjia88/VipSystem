@@ -12,6 +12,7 @@ class GroupController extends Controller
     //
     public function index()
     {
+        //delete the same data
         $groups = DB::table('groups')->get();
         foreach($groups as $group){
             if(App\Member::find($group->user)==null){
