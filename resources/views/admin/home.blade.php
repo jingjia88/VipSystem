@@ -36,10 +36,10 @@
             </form>
           </div>
           <div class="panel-body" style="height:560px;  overflow-y:hidden; overflow-x:auto;">
-          <table id="mytable" style="line-height:40px; min-width:1500px; " border="2" >
+          <table id="mytable" style="line-height:40px; min-width:1600px; " border="2" >
                   <tr>
                   <th scope="col" style="width:150px"></th>
-                    <th scope="col" style="width:10px">ID</th>
+                    <th scope="col" style="width:30px">ID</th>
                     <th scope="col" style="width:80px">行業別</th>
                     <th scope="col" style="width:80px">公司</th>
                     <th scope="col" style="width:80px">中文姓名</th>

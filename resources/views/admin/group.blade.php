@@ -32,25 +32,26 @@
           <table id="mytable" style="line-height:40px;" border="2" >
               <tr>
                 <th scope="col" style="width:200px"></th>
-                <th scope="col" style="width:500px">群組名稱</th>
-                <th scope="col" style="width:500px">時間</th>
+                <th scope="col" style="width:60px">數量</th>
+                <th scope="col" style="width:400px">群組名稱</th>
+                <th scope="col" style="width:400px">時間</th>
               </tr>
               @foreach ($groups as $group)
               <tr>
                  <td>
-                  <a href="{{ url('admin/group/'.$group->name.'/edit') }}" class="btn btn-primary">編輯</a>
-                  <form action="{{ url('admin/group/'.$group->name) }}" method="POST" style="display: inline;">
+                  <a href="{{ url('admin/group/'.$group['name'].'/edit') }}" class="btn btn-primary">編輯</a>
+                  <form action="{{ url('admin/group/'.$group['name']) }}" method="POST" style="display: inline;">
                       {{ method_field('DELETE') }}
                       {{ csrf_field() }}
                       <button type="submit" class="btn btn-danger">删除</button>
                   </form>
                 </td>
-                <td>{{ $group->name }}</td>
-                <td>{{ $group->created_at }}</td>
+                <td>{{ $group['count'] }}</td>
+                <td>{{ $group['name'] }}</td>
+                <td>{{ $group['created_at'] }}</td>
               </tr>
               @endforeach
             </table>
-            <div style="float:right;">{!! $groups->links() !!}</div> 
         </div>
     </div>
     </div>

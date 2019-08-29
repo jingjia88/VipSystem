@@ -20,8 +20,18 @@ class GroupController extends Controller
             }
         }
         
-        $groups = DB::table('groups')->groupBy('name')->paginate(10);
-        return view('admin/group')->with('groups',$groups);
+        //count number of member in group
+        $groupname = DB::table('groups')->groupBy('name')->get();
+        $params=null;
+        foreach($groupname as $gp){
+            $params[] = [
+                'name' => $gp->name,
+                'count' => Group::where('name',$gp->name)->count(),
+                'created_at' => $gp->created_at
+            ];
+        }
+        
+        return view('admin/group')->with('groups',$params);
     }
     public function create(Request $request)
     {
